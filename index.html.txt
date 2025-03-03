@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>免费抖音文案生成器</title>
+    <title>抖音文案生成器</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
         input { padding: 10px; width: 80%; max-width: 400px; margin: 10px; }
@@ -20,17 +20,16 @@
     <script>
         async function generate() {
             const keyword = document.getElementById('keyword').value;
-            const resultDiv = document.getElementById('result');
+            const resultDiv = document.getElementById('result");
             if (!keyword) {
                 resultDiv.textContent = '请输入关键词！';
                 return;
             }
             resultDiv.textContent = '生成中...';
 
-            // 调用免费的Hugging Face API
             try {
                 const response = await fetch(
-                    "https://api-inference.huggingface.co/models/gpt2", // 使用免费的GPT-2模型
+                    "https://api-inference.huggingface.co/models/gpt2",
                     {
                         headers: { 
                             "Authorization": "Bearer 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",
@@ -38,7 +37,7 @@
                         },
                         method: "POST",
                         body: JSON.stringify({
-                            inputs: `生成一个抖音风格的文案，关键词是：${keyword}。要求吸引人、口语化，不超过30字。`,
+                            inputs: `生成一个抖音风格的文案，关键词是：${keyword}`,
                             parameters: { max_length: 50 }
                         }),
                     }
