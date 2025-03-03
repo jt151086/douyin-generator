@@ -18,10 +18,9 @@
     <div class="result" id="result"></div>
 
     <script>
-        // 明确定义 generate 函数
         async function generate() {
             const keyword = document.getElementById('keyword').value;
-            const resultDiv = document.getElementById('result'); // 修复引号未闭合错误
+            const resultDiv = document.getElementById('result');
             if (!keyword) {
                 resultDiv.textContent = '请输入关键词！';
                 return;
@@ -33,7 +32,7 @@
                     "https://api-inference.huggingface.co/models/gpt2",
                     {
                         headers: { 
-                            "Authorization": "Bearer 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", // 替换为你的Key
+                            "Authorization": "Bearer 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", // ✅ 替换为你的 Key
                             "Content-Type": "application/json"
                         },
                         method: "POST",
@@ -43,9 +42,6 @@
                         }),
                     }
                 );
-                if (!response.ok) {
-                    throw new Error(`API请求失败，状态码：${response.status}`);
-                }
                 const data = await response.json();
                 if (data.error) {
                     resultDiv.textContent = '生成失败，请重试！';
@@ -53,7 +49,8 @@
                     resultDiv.textContent = data[0].generated_text;
                 }
             } catch (error) {
-                resultDiv.textContent = `错误：${error.message}`; // 显示具体错误信息
+                resultDiv.textContent = '请求失败，请检查控制台！';
+                console.error("详细错误:", error); // 打印具体错误
             }
         }
     </script>
